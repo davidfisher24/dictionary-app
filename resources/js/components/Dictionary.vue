@@ -3,7 +3,7 @@
         <img :src="'/img/origin_data_logo.svg'" width="300" height="65" >
         <h1 class="h5 mb-5 font-weight-normal text-right">word dictionary</h1>
 
-        <div class="card mb-5" style="max-width: 540px;" v-for="word in words">
+        <div class="card mb-5" style="max-width: 540px;" v-for="(word, index) in words" v-if="index === currentTab">
             <div class="row no-gutters">
                 <div class="col-md-4 pt-4" v-if="word.image_url">
                     <img :src="word.image_url" class="card-img" alt="word-image-alt-demo">
@@ -14,9 +14,38 @@
                         <p class="card-text">{{word.definition}}</p>
                     </div>
                 </div>
+                <div class="card-footer col-md-12">
+                    <div class="row no-gutters">
+                        <div class="col-md-3">
+                            <b-button pill variant="outline-secondary float-left" v-if="words.length > 1 && currentTab > 0" @click="currentTab -= 1">Previous</b-button>
+                        </div>
+                        <div class="col-md-6">
+                            <p class= "text-center">Result {{ index + 1 }} of {{ words.length }}</p>
+                        </div>
+                        <div class="col-md-3">
+                            <b-button pill variant="outline-secondary float-right" v-if="words.length > 1 && currentTab < (words.length - 1)" @click="currentTab += 1">Next</b-button>
+                        </div>
+
+                    </div>
+                </div>
             </div>
         </div>
 
+        <div class="mb-5 clearfix">
+
+
+        </div>
+
+        <div class="card mb-5" style="max-width: 540px;" v-if="words.length === 0 && searched">
+            <div class="row no-gutters">
+                <div class="col-md-12">
+                    <div class="card-body">
+                        <h5 class="card-title">No Results</h5>
+                        <p class="card-text">Sorry. No definitions found for this word</p>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <div class="form-label-group">
             <input type="word" id="word" class="form-control" placeholder="Type a word" v-model="query">
@@ -34,6 +63,8 @@
         data () {
             return {
                 query: '',
+                searched: false,
+                currentTab: 0
             }
         },
 
@@ -41,6 +72,13 @@
             ...mapGetters([
                 'words'
             ])
+        },
+
+        watch: {
+            words() {
+                this.searched = true
+                this.currentTab = 0
+            }
         },
 
         methods: {

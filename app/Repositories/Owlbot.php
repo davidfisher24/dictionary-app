@@ -28,6 +28,9 @@ class Owlbot {
             $data = json_decode($res->getBody());
             return Dictionary::make($data)->resolve();
         }
+        else if (401 === $statuscode) {
+            throw new MyException("Api key invalid or not provided");
+        }
         elseif (404 === $statuscode) {
             $data = (object) array(
                 'definitions' => [],
