@@ -14,7 +14,7 @@ class DictionaryAdapterTest extends TestCase
         $stub = Mockery::mock(Owlbot::class);
         $stub->shouldReceive('search')->with('query')->andReturn(
             json_encode(array(
-                "pronunciation" => "bləd",
+                "pronunciation" => "blud",
                 "word" => "blood"
             ))
         );
@@ -22,6 +22,6 @@ class DictionaryAdapterTest extends TestCase
         $test = new DictionaryAdapter($stub);
         $result = $test->search('query');
 
-        $this->assertSame($result, '{"pronunciation":"bl\u0259d","word":"blood"}');
+        $this->assertSame($result, '{"pronunciation":"blud","word":"blood"}');
     }
 }

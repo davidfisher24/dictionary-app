@@ -11,7 +11,8 @@ Install [Docker](https://docs.docker.com/) and [Docker Compose](https://docs.doc
 Copy .env.example to .env and set the variable OWLBOT_API_TOKEN with a valid api token
 
 Build and run the Docker containers
-`docker-compose up --build`
+`docker-compose build`
+`docker-compose up -d`
 
 Install php dependecies
 `docker exec -it dictionaryapp_app_1 composer install`

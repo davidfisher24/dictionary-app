@@ -9,9 +9,9 @@ class DictionaryController extends Controller
 {
     private $api;
 
-    public function __construct()
+    public function __construct(Owlbot $owlbot)
     {
-        $this->api = new Owlbot();
+        $this->api = $owlbot;
     }
 
     public function search ($query)
