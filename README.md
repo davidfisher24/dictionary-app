@@ -5,6 +5,14 @@
 
 ## Run
 
+### Quickstart
+
+There are scripts to run the commands to set up the environment in the folder bin. Tested on ubuntu 18.04.
+
+With docker `sh bin/docker.sh`
+Without docker `sh bin/local.sh`
+
+
 ### With a docker
 Install [Docker](https://docs.docker.com/) and [Docker Compose](https://docs.docker.com/compose/)
 
@@ -21,8 +29,7 @@ Install node js dependecies and build production version
 `docker exec -it dictionaryapp_app_1 npm install && npm run production`
 
 Generate artisan key
-`docker exec -it dictionaryapp_app_1 php artisan key:generate && php artisan cache:clear
-`
+`docker exec -it dictionaryapp_app_1 php artisan key:generate && php artisan cache:clear`
 
 Visit your app at [http://localhost:8080](http://localhost:8080/)
 
@@ -50,10 +57,15 @@ Run Composer server
 For npm production version
 `npm run production`
 
+For npm development version
+`npm run development`
+
 Or for npm hot reload development verison
 `npm run watch`
 
 Visit your app at [http://localhost:8000](http://localhost:8000/)
 
+### With a docker
 
+Run Laravel tests `./vendor/bin/phpunit`
    
