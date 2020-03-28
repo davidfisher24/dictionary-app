@@ -67,5 +67,6 @@ Visit your app at [http://localhost:8000](http://localhost:8000/)
 
 ### With a docker
 
-Run Laravel tests `./vendor/bin/phpunit`
+Run Laravel phpunut tests `./vendor/bin/phpunit`
+Run vuejs tests on dictionary component `npm test`
    
